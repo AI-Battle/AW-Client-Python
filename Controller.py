@@ -55,11 +55,10 @@ class Controller:
         self.sending_flag = False
 
     def read_settings(self):
-        if os.environ.get(self.argNames[0]) is None:
-            for i in range(len(self.argNames)):
+        for i in range(len(self.argNames)):
+            if os.environ.get(self.argNames[i]) is None:
                 self.conf[self.argNames[i]] = self.argDefaults[i]
-        else:
-            for i in range(len(self.argNames)):
+            else:
                 self.conf[self.argNames[i]] = os.environ.get(self.argNames[i])
 
     def handle_message(self, message):
